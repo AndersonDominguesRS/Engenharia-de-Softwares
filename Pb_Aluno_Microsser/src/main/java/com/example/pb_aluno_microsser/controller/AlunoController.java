@@ -31,13 +31,12 @@ public class AlunoController {
     }
 
 
-    @GetMapping
+    @GetMapping@Operation (summary = " -- LISTAGEM DE ALUNOS")
     public List<Aluno> getAl(@RequestParam(required = false) String nome){
         return alunoService.lista();
     }
 
-
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") @Operation (summary = " -- CONSULTA ALUNO POR ID")
     public ResponseEntity<?> getAluno(@PathVariable Integer id){
         try {
             Optional<Aluno> encontrado = alunoService.aluinoId(id);
@@ -50,33 +49,22 @@ public class AlunoController {
 
     }
 
-    @Operation (summary = "Inserindo um aluno")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Atualizado inserido com sucesso",
+            @ApiResponse(responseCode = "201", description = "ALUNO INSERIDO COM SUCESSO",
                     content = {@Content(mediaType = "appication/json",
                             schema = @Schema(implementation = Aluno.class))}
             )
     })
 
-    @PostMapping
+    @PostMapping@Operation (summary = " -- INSERIR UM NOVO ALUNO")
     public ResponseEntity<MessagePayload> insert(@RequestBody Aluno aluno){
         log.info("Inserindo um aluno {}", aluno);
         alunoService.salva(aluno);
         return ResponseEntity.ok(new MessagePayload("Criado com sucesso"));
     }
 
-    @Operation (summary = "Atualizando um aluno")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "202", description = "Atualizado com sucesso",
-            content = {@Content(mediaType = "appication/json",
-            schema = @Schema(implementation = MessagePayload.class))}
-            ),
-            @ApiResponse(responseCode = "404", description = "ocorreu um erro",
-                    content = {@Content(mediaType = "appication/json",
-                            schema = @Schema(implementation = MessagePayload.class))}
-            )
-    })
-    @PutMapping("/{id}")
+
+    @PutMapping("/{id}")@Operation (summary = " -- ATUALIZANDO UM ALUNO")
     public ResponseEntity<MessagePayload> update(@PathVariable int id, @RequestBody Aluno aluno){
         try {
             alunoService.atualiza(id, aluno);
@@ -86,7 +74,7 @@ public class AlunoController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")@Operation (summary = " -- DELETANDO UM ALUNO")
     public ResponseEntity<MessagePayload> delete(@PathVariable int id){
         try {
             alunoService.delete(id);

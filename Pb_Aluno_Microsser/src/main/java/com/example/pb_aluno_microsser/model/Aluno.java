@@ -16,7 +16,6 @@ import lombok.NoArgsConstructor;
 
 public class Aluno {
 
-    @NotBlank
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
