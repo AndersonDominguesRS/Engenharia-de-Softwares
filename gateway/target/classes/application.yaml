@@ -1,0 +1,43 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: aluno
+          uri: lb://MICROSSERVICO-ALUNO
+          filters:
+            - StripPrefix=1
+          predicates:
+            - Path=/aluno/**
+
+        - id: disciplina
+          uri: lb://MICROSSERVICO-DISCIPLINA
+          filters:
+            - StripPrefix=1
+          predicates:
+            - Path=/disciplina/**
+
+        - id: cadastro
+          uri: lb://MICROSSERVICO-CADASTRO
+          filters:
+            - StripPrefix=1
+          predicates:
+            - Path=/cadastro/**
+
+        - id: cadastroComprovante
+          uri: lb://MICROSSERVICO-CADASTROCOMPROVANTE
+          filters:
+            - StripPrefix=1
+          predicates:
+            - Path=/cadastrocomprovoante/**
+
+  application:
+    name: gateway-service
+
+server:
+  port: 8989
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultUrl: htt://localhost:8761/eureka/
