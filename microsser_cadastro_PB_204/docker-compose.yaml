@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  eureka-service:
+    image: eureka-server:latest
+    container_name: eureka-service
+    build:
+      context: ../EurekaService
+    ports:
+      - "8761:8761"
+
+
+  cadastro-server:
+    image: cadastro-server:latest
+    container_name: MICROSSERVICO-CADASTRO
+    build:
+      context: .
+    ports:
+      - "8085:8085"
+    depends_on:
+      - eureka-service
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - EUREKA_INSTANCE_PREFERIPADDRESS=true

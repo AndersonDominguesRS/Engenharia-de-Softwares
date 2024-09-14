@@ -1,0 +1,12 @@
+com\example\microsser_cadastro_pb_204\repository\CadastroRepository.class
+com\example\microsser_cadastro_pb_204\controller\CadastroController.class
+com\example\microsser_cadastro_pb_204\model\Aluno$AlunoBuilder.class
+com\example\microsser_cadastro_pb_204\exception\ResourseNotFoundException.class
+com\example\microsser_cadastro_pb_204\model\Aluno.class
+com\example\microsser_cadastro_pb_204\model\Disciplina.class
+com\example\microsser_cadastro_pb_204\feign\AlunoClient.class
+com\example\microsser_cadastro_pb_204\model\Cadastro.class
+com\example\microsser_cadastro_pb_204\feign\DisciplinaClient.class
+com\example\microsser_cadastro_pb_204\service\CadastroService.class
+com\example\microsser_cadastro_pb_204\rabbitmq\DisciplinaConsumer.class
+com\example\microsser_cadastro_pb_204\MicrosserCadastroPb204Application.class
